@@ -102,6 +102,14 @@ addTests(
     });
 
 addTests(
+    'text',
+    'set innerText replacing similar text',
+    '<div ARIA-ATTRS>Live region space</div>',
+    function(region) {
+      region.innerText = 'Live region succeeded.';
+    });
+
+addTests(
     'additions',
     'append new div as child',
     '<div ARIA-ATTRS></div>',
