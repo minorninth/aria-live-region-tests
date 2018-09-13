@@ -314,24 +314,10 @@ addTests(
       }, 150);
     });
 
-// ---------- Begin focus mode test ---------
 addTests(
     'text',
-    'Live region changes in focus mode (virtual buffer off)',
-    '<div ARIA-ATTRS></div>' +
-    '<input class="focus-mode-test-input" size="80" value="Type a key in this field and wait for live region succeeded announcement">',
+    'With focus mode on (first toggle mode with Ins+Z in JAWS, Ins+Space in NVDA)',
+    '<div ARIA-ATTRS></div>',
     function(region) {
-      region.parentElement.querySelector('input').focus();
+      region.innerHTML = 'Live region succeeded.';
     });
-function focusModeTest(evt) {  // Goes with above test.
-  const region = evt.target.parentElement.querySelector('[aria-live]');
-  region.innerHTML = 'Live region succeeded.';
-  setTimeout(() => { region.innerHTML = '';}, 1000); // Clear so it can be used again.
-}
-const focusModeTestInputs = document.getElementsByClassName('focus-mode-test-input');
-for (let index = 0; index < focusModeTestInputs.length; index ++) {
-  focusModeTestInputs[index].addEventListener('keydown', focusModeTest);
-}
-// ---------- End focus mode test ---------
-
-
