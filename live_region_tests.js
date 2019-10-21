@@ -272,6 +272,15 @@ addTests(
 
 addTests(
     'text',
+    'button which is itself a life region (as opposed to being inside of one)',
+    '<div><input type="button" value="Live region failed" ARIA-ATTRS>' +
+    '</div>',
+    function(region) {
+      region.firstChild.setAttribute('value', 'Live region succeeded.');
+    });
+
+addTests(
+    'text',
     'set focus to link 1, then modify live region.',
     '<div ARIA-ATTRS></div>' +
     '<div><a id="f1" href="#">Link 1</a></div>',
