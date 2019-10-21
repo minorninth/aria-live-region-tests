@@ -231,9 +231,19 @@ addTests(
 
 addTests(
     'text',
-    'change img alt text',
+    'change img alt text where img is contained within live region',
     '<div ARIA-ATTRS>' +
     '<img src="http://google.com/favicon.ico" alt="Live region failed.">' +
+    '</div>',
+    function(region) {
+      region.firstChild.setAttribute('alt', 'Live region succeeded.');
+    });
+
+addTests(
+    'text',
+    'change img alt text where aria-live is on img itself',
+    '<div>' +
+    '<img ARIA-ATTRS src="http://google.com/favicon.ico" alt="Live region failed.">' +
     '</div>',
     function(region) {
       region.firstChild.setAttribute('alt', 'Live region succeeded.');
