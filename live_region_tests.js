@@ -6,6 +6,8 @@ var attrs = [
     'aria-live="polite" aria-relevant="text"',
     'aria-live="assertive" aria-relevant="text additions"'];
 
+var live_region_counter = 0;
+
 // Adds one test to the page.
 function addTest(section, title, regionInnerHTML, clickHandler) {
   var testContainer = document.createElement('div');
@@ -55,7 +57,7 @@ addTests(
     'add new alert to page',
     '<div></div>',
     function(region) {
-      region.innerHTML = '<div role="alert">Alert succeeded.</div>';
+      region.innerHTML = '<div role="alert">Alert ' + (++live_region_counter) + '.</div>';
     });
 
 addTests(
@@ -80,7 +82,7 @@ addTests(
     'set textContent',
     '<div ARIA-ATTRS></div>',
     function(region) {
-      region.innerHTML = 'Live region succeeded.';
+      region.innerHTML = 'Live region succeeded ' + (++live_region_counter);
     });
 
 addTests(
@@ -89,7 +91,7 @@ addTests(
     '<div ARIA-ATTRS><div id="setTextContentInInnerDiv"></div></div>',
     function(region) {
       document.getElementById('setTextContentInInnerDiv').innerHTML =
-          'Live region succeeded.';
+          'Live region succeeded ' + (++live_region_counter);
     });
 
 addTests(
@@ -98,7 +100,7 @@ addTests(
     '<div ARIA-ATTRS><p id="setTextContentInInnerPara"></p></div>',
     function(region) {
       document.getElementById('setTextContentInInnerPara').innerHTML =
-          'Live region succeeded.';
+          'Live region succeeded ' + (++live_region_counter);
     });
 
 addTests(
@@ -106,7 +108,7 @@ addTests(
     'set innerText replacing similar text',
     '<div ARIA-ATTRS>Live region space</div>',
     function(region) {
-      region.innerText = 'Live region succeeded.';
+      region.innerText = 'Live region succeeded ' + (++live_region_counter);
     });
 
 addTests(
@@ -115,7 +117,7 @@ addTests(
     '<div ARIA-ATTRS></div>',
     function(region) {
       var msg = document.createElement('div');
-      var text = document.createTextNode('Live region succeeded.');
+      var text = document.createTextNode('Live region succeeded ' + (++live_region_counter));
       msg.appendChild(text);
       region.appendChild(msg);
     });
@@ -144,7 +146,7 @@ addTests(
     '<div ARIA-ATTRS aria-atomic="true">Live region s</div>',
     function(region) {
       var msg = document.createElement('span');
-      var text = document.createTextNode('ucceeded.');
+      var text = document.createTextNode('ucceeded' + (++live_region_counter));
       msg.appendChild(text);
       region.appendChild(msg);
     });
@@ -159,7 +161,7 @@ addTests(
     '</div>',
     function(region) {
       document.getElementById('atomic-a').textContent = 'Live';
-      document.getElementById('atomic-c').textContent = 'succeeded.';
+      document.getElementById('atomic-c').textContent = 'succeeded' + (++live_region_counter);
     });
 
 addTests(
@@ -171,14 +173,14 @@ addTests(
       document.getElementById('first').textContent =
           'This utterance should be interrupted before it finishes';
       setTimeout(function() {
-        document.getElementById('second').textContent = 'Live region succeeded';
+        document.getElementById('second').textContent = 'Live region succeeded ' + (++live_region_counter);
       }, 1000);
     });
 
 addTests(
     'additions',
     'remove display none',
-    '<div ARIA-ATTRS><div style="display:none">Live region succeeded.</div></div>',
+    '<div ARIA-ATTRS><div style="display:none">Live region succeeded.' + (++live_region_counter) + '</div></div>',
     function(region) {
       region.firstElementChild.style.display = 'block';
     });
@@ -186,7 +188,7 @@ addTests(
 addTests(
     'additions',
     'remove visibility hidden',
-    '<div ARIA-ATTRS><div style="visibility:hidden">Live region succeeded.</div></div>',
+    '<div ARIA-ATTRS><div style="visibility:hidden">Live region succeeded ' + (++live_region_counter) + '</div></div>',
     function(region) {
       region.firstElementChild.style.visibility = 'visible';
     });
@@ -196,7 +198,7 @@ addTests(
     'text node set data',
     '<div ARIA-ATTRS>Live region failed.</div>',
     function(region) {
-      region.firstChild.data = 'Live region succeeded.';
+      region.firstChild.data = 'Live region succeeded ' + (++live_region_counter);
     });
 
 addTests(
@@ -204,7 +206,7 @@ addTests(
     'text node replaceData',
     '<div ARIA-ATTRS>Live region failed.</div>',
     function(region) {
-      region.firstChild.replaceData(12, 6, 'succeeded');
+      region.firstChild.replaceData(12, 6, 'succeeded ' + (++live_region_counter));
     });
 
 addTests(
@@ -212,7 +214,7 @@ addTests(
     'reparent div with existing text',
     '<div ARIA-ATTRS></div>' +
     '<div id="offscreen" style="position: absolute; left: 99999px;">' +
-    'Live region succeeded.' +
+    'Live region succeeded ' + (++live_region_counter) +
     '</div>',
     function(region) {
       region.appendChild(document.getElementById('offscreen').firstChild);
@@ -225,7 +227,7 @@ addTests(
     function(region) {
       var img = document.createElement('img');
       img.src = 'http://google.com/favicon.ico';
-      img.setAttribute('alt', 'Live region succeeded.');
+      img.setAttribute('alt', 'Live region succeeded ' + (++live_region_counter));
       region.appendChild(img);
     });
 
@@ -236,7 +238,7 @@ addTests(
     '<img src="http://google.com/favicon.ico" alt="Live region failed.">' +
     '</div>',
     function(region) {
-      region.firstChild.setAttribute('alt', 'Live region succeeded.');
+      region.firstChild.setAttribute('alt', 'Live region succeeded ' + (++live_region_counter));
     });
 
 addTests(
@@ -246,7 +248,7 @@ addTests(
     '<img ARIA-ATTRS src="http://google.com/favicon.ico" alt="Live region failed.">' +
     '</div>',
     function(region) {
-      region.firstChild.setAttribute('alt', 'Live region succeeded.');
+      region.firstChild.setAttribute('alt', 'Live region succeeded ' + (++live_region_counter));
     });
 
 addTests(
@@ -255,7 +257,7 @@ addTests(
     '<div ARIA-ATTRS></div>',
     function(region) {
       var b = document.createElement('button');
-      b.textContent = 'Live region succeeded.';
+      b.textContent = 'Live region succeeded ' + (++live_region_counter);
       region.appendChild(b);
     });
 
@@ -266,7 +268,7 @@ addTests(
     function(region) {
       var b = document.createElement('button');
       b.textContent = 'Live region failed.';
-      b.setAttribute('aria-label', 'Live region succeeded.');
+      b.setAttribute('aria-label', 'Live region succeeded ' + (++live_region_counter));
       region.appendChild(b);
     });
 
@@ -277,7 +279,7 @@ addTests(
     '<button aria-label="Fail 2.">Fail 1.</button>' +
     '</div>',
     function(region) {
-      region.firstChild.setAttribute('aria-label', 'Live region succeeded.');
+      region.firstChild.setAttribute('aria-label', 'Live region succeeded ' + (++live_region_counter));
     });
 
 addTests(
@@ -286,7 +288,7 @@ addTests(
     '<div><input type="button" value="Live region failed" ARIA-ATTRS>' +
     '</div>',
     function(region) {
-      region.firstChild.setAttribute('value', 'Live region succeeded.');
+      region.firstChild.setAttribute('value', 'Live region succeeded ' + (++live_region_counter));
     });
 
 addTests(
@@ -296,7 +298,7 @@ addTests(
     '<div><a id="f1" href="#">Link 1</a></div>',
     function(region) {
       document.getElementById('f1').focus();
-      region.innerHTML = 'Live region succeeded.';
+      region.innerHTML = 'Live region succeeded ' + (++live_region_counter);
     });
 
 addTests(
@@ -305,7 +307,7 @@ addTests(
     '<div ARIA-ATTRS></div>' +
     '<div><a id="f2" href="#">Link 2</a></div>',
     function(region) {
-      region.innerHTML = 'Live region succeeded.';
+      region.innerHTML = 'Live region succeeded ' + (++live_region_counter);
       document.getElementById('f2').focus();
     });
 
@@ -317,7 +319,7 @@ addTests(
     function(region) {
       document.getElementById('f3').focus();
       setTimeout(function() {
-        region.innerHTML = 'Live region succeeded.';
+        region.innerHTML = 'Live region succeeded ' + (++live_region_counter);
       }, 150);
     });
 
@@ -327,16 +329,9 @@ addTests(
     '<div ARIA-ATTRS></div>' +
     '<div><a id="f4" href="#">Link 4</a></div>',
     function(region) {
-      region.innerHTML = 'Live region succeeded.';
+      region.innerHTML = 'Live region succeeded ' + (++live_region_counter);
       setTimeout(function() {
         document.getElementById('f4').focus();
       }, 150);
     });
 
-addTests(
-    'text',
-    'With focus mode on (first toggle mode with Ins+Z in JAWS, Ins+Space in NVDA)',
-    '<div ARIA-ATTRS></div>',
-    function(region) {
-      region.innerHTML = 'Live region succeeded.';
-    });
