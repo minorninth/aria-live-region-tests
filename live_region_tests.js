@@ -161,7 +161,7 @@ addTests(
 
 addTests(
     'additions',
-    'add two elements to atomic live region',
+    'set textContent of two elements in an atomic live region',
     '<div ARIA-ATTRS aria-atomic="true">' +
     '<div id="atomic-a"></div>' +
     '<div id="atomic-b">region</div>' +
@@ -169,7 +169,26 @@ addTests(
     '</div>',
     function(region) {
       document.getElementById('atomic-a').textContent = 'Live';
-      document.getElementById('atomic-c').textContent = 'succeeded ' + (++live_region_counter);
+      document.getElementById('atomic-c').textContent = 'succeeded';
+    });
+
+addTests(
+    'additions',
+    'set textContents of live region grandchild',
+    '<div ARIA-ATTRS>' +
+    '<div id="abc"></div>' +
+    '</div>',
+    function(region) {
+      document.getElementById('abc').textContent = 'Live region succeeded ' + (++ live_region_counter);
+    });
+
+addTests(
+    'additions',
+    'change unrelated attribute in a live region, should not speak',
+    '<div id="foo15" ARIA-ATTRS>Live region failure' +
+    '</div>',
+    function(region) {
+      document.getElementById('foo15').className = 'cats-are-liquid';
     });
 
 addTests(
