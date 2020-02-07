@@ -251,7 +251,7 @@ addTests(
     'additions',
     'reparent div with existing text',
     '<div ARIA-ATTRS></div>' +
-    '<div id="offscreen" style="position: absolute; left: 99999px;">' +
+    '<div id="offscreen" style="position: absolute; left: -99999px;">' +
     'Live region succeeded ' + (++live_region_counter) +
     '</div>',
     function(region) {
