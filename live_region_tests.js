@@ -150,6 +150,17 @@ addTests(
 
 addTests(
     'additions',
+    'add element to live region that already has content',
+    '<div ARIA-ATTRS><div>Live region failed.</div></div>',
+    function(region) {
+      var msg = document.createElement('div');
+      var text = document.createTextNode('Live region succeeded ' + (++live_region_counter));
+      msg.appendChild(text);
+      region.appendChild(msg);
+    });
+
+addTests(
+    'additions',
     'add element to atomic live region',
     '<div ARIA-ATTRS aria-atomic="true">Live region s</div>',
     function(region) {
@@ -363,4 +374,3 @@ addTests(
         document.getElementById('f4').focus();
       }, 150);
     });
-
