@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <title>Timing tests</title>
+  <style>
+    body {
+      font-family: arial, sans-serif;
+      font-size: 10pt;
+    }
+    .testContainer {
+      border: 1px solid #696969;
+      padding: 4px;
+    }
+    .testContainer button {
+      margin-right: 10px;
+    }
+    .regionContainer {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    Timing tests
+  </h1>
+  <p>
+    These tests all explore what happens if multiple changes happen
+    in quick succession, such as two live region changes, or live region
+    changes and focus changes.
+  </p>
+  <script src="common.js"></script>
+  <script src="timing_tests.js"></script>
+</body>
+</html>

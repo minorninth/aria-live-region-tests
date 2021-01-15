@@ -6,6 +6,8 @@ var attrs = [
     'aria-live="polite" aria-relevant="text"',
     'aria-live="assertive" aria-relevant="text additions"'];
 
+build();
+
 var live_region_counter = 0;
 
 addTests(
